@@ -1,0 +1,130 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="BookStoreCatalog.master.cs" Inherits="BookStoreCatalog.BookStoreCatalog" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>KG BOOKSTORE</title>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link rel="stylesheet" href="Resources/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="Resources/css/styles.css" type="text/css" />
+
+    <!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+    <script type="text/javascript" src="Resources/js/jquery.js"></script>
+    <script type="text/javascript" src="Resources/js/custom.js"></script>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <header>
+            <div class="width">
+                <h1><a href="#">ОНЛАЙН<strong> КНИЖАРНИЦА</strong></a></h1>
+                <h2>безплатни електронни книги</h2>
+            </div>
+        </header>
+
+        <nav id="mainnav">
+            <div class="width">
+                <ul>
+                    <asp:Repeater runat="server" ID="navigationRepeater">
+                        <ItemTemplate>
+                            <%# Container.DataItem %>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+
+                <div class="clear"></div>
+            </div>
+        </nav>
+
+        <div class="intro">
+            <div class="width" style="height: 300px">
+                <%--<h2>Tristique sem vitae metus ornare </h2>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque venenatis sagittis enim. Maecenas ligula erat, egestas congue, varius nec, sagittis nec, purus. In neque.</p>
+                <p style="text-align: center;">
+                    <a href="#" class="button button-slider">Lorem ipsum dolor</a>
+                    <a href="#" class="button button-reversed button-slider">Ligula erat vitae</a>
+                </p>--%>
+            </div>
+        </div>
+
+        <section id="body">
+            <aside id="sidebar" class="column-left">
+                <div class="responsive-sidebar-hide block">
+                    <h4>Търсене на книги</h4>
+                    <fieldset class="searchform">
+                        <p>
+                            <asp:TextBox ID="txtSearchBox" runat="server" CssClass="searchforminput"></asp:TextBox>
+                        </p>
+                        <p>
+                            <asp:Button ID="SearchButton" runat="server" Text="&#1058;&#1098;&#1088;&#1089;&#1080;" CssClass="formbutton" Style="width: 100%" OnClick="SearchButton_Click" />
+                        </p>
+                    </fieldset>
+                </div>
+
+                <div class="responsive-sidebar-hide block">
+                    <fieldset class="searchform">
+                        <p class="text-block coloured-text-block">
+                            <asp:ContentPlaceHolder ID="Login" runat="server">
+                                <asp:Label ID="lbUserName" runat="server" Text="&#1055;&#1086;&#1090;&#1088;&#1077;&#1073;&#1080;&#1090;&#1077;&#1083;&#1089;&#1082;&#1086; &#1080;&#1084;&#1077;" Font-Size="X-Large" CssClass="searchforminput"></asp:Label>
+                                <asp:TextBox ID="txtUserName" runat="server" CssClass="searchforminput"></asp:TextBox>
+                                <asp:Label ID="lbPass" runat="server" Text="&#1055;&#1072;&#1088;&#1086;&#1083;&#1072;" Font-Size="X-Large" CssClass="searchforminput"></asp:Label>
+                                <asp:TextBox ID="txtPass" runat="server" CssClass="searchforminput" TextMode="password"></asp:TextBox>
+                                <asp:Label ID="lbMessage" runat="server" CssClass="searchforminput"></asp:Label>
+
+                                <asp:Button ID="btnLogin" runat="server" Text="&#1042;&#1093;&#1086;&#1076;" CssClass="formbuttonreversed" Style="width: 100%;" OnClick="btnLogin_Click" />
+                                <asp:Button ID="btnLogout" runat="server" Text="&#1048;&#1079;&#1093;&#1086;&#1076;" CssClass="formbuttonreversed" Style="width: 100%;" OnClick="btnLogout_Click" />
+                            </asp:ContentPlaceHolder>
+                        </p>
+                    </fieldset>
+                </div>
+
+                <div class="responsive-sidebar-hide block">
+                    <h4>Категории</h4>
+
+                    <asp:ContentPlaceHolder ID="Categories" runat="server">
+                        <div class="text-block">
+                            <asp:GridView ID="CategoriesGridView" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" ShowHeader="False" GridLines="None" BorderStyle="None">
+                                <FooterStyle BorderStyle="None" />
+                                <Columns>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Text='<%# Eval("c_fname")%>'>LinkButton</asp:LinkButton>
+                                        </ItemTemplate>
+                                        <ItemStyle Font-Size="X-Large" />
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookstoreCatalog_1621448ConnectionString %>" SelectCommand="SELECT DISTINCT [c_fname] FROM [category]"></asp:SqlDataSource>
+                        </div>
+                    </asp:ContentPlaceHolder>
+                </div>
+            </aside>
+            <section id="content" class="column-right">
+
+                <div>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+
+            </section>
+            <div class="clear"></div>
+        </section>
+
+        <footer>
+            <div class="footer-bottom">
+                <p>&copy; BookStoreCatalog 2017. <a href="http://zypopwebtemplates.com/">Free HTML5 Templates</a> by ZyPOP</p>
+            </div>
+        </footer>
+    </form>
+</body>
+</html>
