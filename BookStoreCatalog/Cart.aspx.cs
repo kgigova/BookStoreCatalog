@@ -54,11 +54,9 @@ namespace BookStoreCatalog
                 result = DatabaseHelper.ExecuteQueryWithResult(totalPriceCmd);
                 SqlDataReader reader = result.GetReader();
                 reader.Read();
-                lbSum.Text = result.GetReader().GetDecimal(0).ToString(); 
+                lbSum.Text = result.GetReader().GetDecimal(0).ToString();
             }
             result.Close();
-
-
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -68,7 +66,6 @@ namespace BookStoreCatalog
                 CheckBox s = (CheckBox)li.FindControl("CheckBox1");
                 if (s.Checked == true)
                 {
-
                     SqlCommand delBooksCmd = new SqlCommand("sp_delete_books");
                     delBooksCmd.CommandType = CommandType.StoredProcedure;
                     delBooksCmd.CommandText = "sp_delete_books";
@@ -76,27 +73,31 @@ namespace BookStoreCatalog
                     DatabaseHelper.AddParameter(delBooksCmd, "@book_id", SqlDbType.Int, ((Label)li.FindControl("lblBookID")).Text);
                     DatabaseHelper.AddParameter(delBooksCmd, "@user_id", SqlDbType.Int, m_userId);
                     DatabaseHelper.ExecuteQueryNoResult(delBooksCmd);
-
                 }
             }
+
             DataList1.DataBind();
+            if (DataList1.Items.Count == 0)
+            {
+                Label1.Text = "Вашата кошница е празна!";
+                Label2.Attributes["style"] = "display: none;";
+                lbSum.Attributes["style"] = "display: none;";
+            }
         }
 
         protected void btnOrder_Click(object sender, EventArgs e)
         {
+            SqlCommand orderBooksCmd = new SqlCommand("sp_update_order");
+            orderBooksCmd.CommandType = CommandType.StoredProcedure;
+            orderBooksCmd.CommandText = "sp_update_order";
 
-                SqlCommand orderBooksCmd = new SqlCommand("sp_update_order");
-                orderBooksCmd.CommandType = CommandType.StoredProcedure;
-                orderBooksCmd.CommandText = "sp_update_order";
+            DatabaseHelper.AddParameter(orderBooksCmd, "@user_id", SqlDbType.Int, m_userId);
+            DatabaseHelper.ExecuteQueryNoResult(orderBooksCmd);
 
-                DatabaseHelper.AddParameter(orderBooksCmd, "@user_id", SqlDbType.Int, m_userId);
-                DatabaseHelper.ExecuteQueryNoResult(orderBooksCmd);
-
-                DataList1.DataBind();
-                btnOrder.Attributes["style"] = "display: none;";
-                btnDelete.Attributes["style"] = "display: none;";
-                Label2.Attributes["style"] = "display: none;";
-                Label1.Text = "Вашата кошница е празна!";
+            DataList1.DataBind();
+            Label1.Text = "Вашата кошница е празна!";
+            Label2.Attributes["style"] = "display: none;";
+            lbSum.Attributes["style"] = "display: none;";
         }
     }
 }
