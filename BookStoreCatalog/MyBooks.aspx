@@ -10,7 +10,7 @@
         <ItemStyle Width="30%" />
         <ItemTemplate>
             <div>
-                <asp:Image runat="server" ID="imgBookPic" ImageUrl='<%# Bind("imagePath") %>' style="width:90%; height:60%; margin:auto"/>
+                <asp:Image runat="server" ID="imgBookPic" ImageUrl='<%# Bind("imagePath") %>' style="width:60%; height:90%; margin:auto"/>
                 <div style="margin:5px">
                     <asp:LinkButton runat="server" ID="linkShowDetails" href='<%# string.Format("Details.aspx?book_id={0}", Eval("book_id")) %>' Text='<%# Bind("title") %>' style="font-weight:bold"></asp:LinkButton>
                 </div>
