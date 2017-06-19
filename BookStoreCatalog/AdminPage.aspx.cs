@@ -103,7 +103,10 @@ namespace BookStoreCatalog
                 if (DetailsView1.CurrentMode == DetailsViewMode.Edit)
                 {
                     DataRowView rowView = (DataRowView)DetailsView1.DataItem;
-                    dropDownList.SelectedValue = (String)rowView.Row["c_fname"];
+                    if (rowView.Row["c_fname"] != null)
+                    {
+                        dropDownList.SelectedValue = (String)rowView.Row["c_fname"];
+                    }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data Bound')", true);
                 }
             }
