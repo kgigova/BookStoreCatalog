@@ -81,13 +81,13 @@ namespace BookStoreCatalog
                     String filePath = Server.MapPath("./BookPictures/") + imageName;
                     fileUpload.SaveAs(filePath);
                     e.NewValues["imagePath"] = "BookPictures/" + imageName;
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('File path: " + filePath + "')", true);
                 }
             }
 
 
             DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
             e.NewValues.Add("c_fname", dropDownList.SelectedValue);
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Edit Category: " + dropDownList.SelectedValue + "')", true);
         }
 
         protected void DetailsView1_DataBound(object sender, EventArgs e)
@@ -107,7 +107,6 @@ namespace BookStoreCatalog
                     {
                         dropDownList.SelectedValue = (String)rowView.Row["c_fname"];
                     }
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data Bound')", true);
                 }
             }
         }
@@ -116,7 +115,6 @@ namespace BookStoreCatalog
         {
             DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
             e.Values.Add("c_fname", dropDownList.SelectedValue);
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Insert Category: " + dropDownList.SelectedValue + "')", true);
         }
     }
 }
