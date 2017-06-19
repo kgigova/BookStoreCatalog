@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Label ID="lbEmail" runat="server" Text="Е-Поща" Font-Size="18pt" Font-Bold="True"></asp:Label>
+                    <asp:Label ID="lbEmail" runat="server" Text="Имейл" Font-Size="18pt" Font-Bold="True"></asp:Label>
                 </td>
                 <td>
                     <asp:TextBox ID="txtEmail" runat="server" Width="210px" CssClass="searchforminput"></asp:TextBox>
@@ -54,10 +54,10 @@
         <table>
             <tr>
                 <td>
-                    <asp:Button ID="btnReg" runat="server" CssClass="formbutton" Text="&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1072;&#1094;&#1080;&#1103;" Width="230px" Font-Bold="True" OnClick="btnReg_Click" />
+                    <asp:Button ID="btnReg" runat="server" CssClass="formbutton" Text="Регистрация" Width="230px" Font-Bold="True" OnClick="btnReg_Click" />
                 </td>
                 <td>
-                    <asp:Button ID="btnCancel" runat="server" Text="&#1054;&#1090;&#1082;&#1072;&#1079;" CssClass="formbutton formButtonReverse" Width="230px" Font-Bold="True" OnClick="btnCancel_Click" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Отказ" CssClass="formbutton formButtonReverse" Width="230px" Font-Bold="True" OnClick="btnCancel_Click" />
                 </td>
             </tr>
         </table>
