@@ -50,6 +50,7 @@ namespace BookStoreCatalog
                 lblMessageText.Text += "Име: " + fileUpload.FileName + "<br/>";
                 lblMessageText.Text += "Размер: " + fileUpload.PostedFile.ContentLength + " bytes<br/>";
                 fileUpload.Attributes["style"] = "display: none;";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('File Path: " + filePath + "')", true);
             }
         }
 
@@ -83,12 +84,10 @@ namespace BookStoreCatalog
                 }
             }
 
-            if (DetailsView1.CurrentMode == DetailsViewMode.Edit ||
-                DetailsView1.CurrentMode == DetailsViewMode.Insert)
-            {
-                DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
-                e.NewValues.Add("c_fname", dropDownList.SelectedValue);
-            }
+
+            DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
+            e.NewValues.Add("c_fname", dropDownList.SelectedValue);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Edit Category: " + dropDownList.SelectedValue + "')", true);
         }
 
         protected void DetailsView1_DataBound(object sender, EventArgs e)
@@ -105,6 +104,7 @@ namespace BookStoreCatalog
                 {
                     DataRowView rowView = (DataRowView)DetailsView1.DataItem;
                     dropDownList.SelectedValue = (String)rowView.Row["c_fname"];
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data Bound')", true);
                 }
             }
         }
@@ -113,6 +113,7 @@ namespace BookStoreCatalog
         {
             DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
             e.Values.Add("c_fname", dropDownList.SelectedValue);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Insert Category: " + dropDownList.SelectedValue + "')", true);
         }
     }
 }
