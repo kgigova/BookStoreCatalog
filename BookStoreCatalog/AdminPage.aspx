@@ -1,8 +1,6 @@
-﻿<%@ Page Trace="true" Title="" Language="C#" MasterPageFile="~/BookStoreCatalog.Master" AutoEventWireup="true" CodeBehind="AdminPage.aspx.cs" Inherits="BookStoreCatalog.AdminPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BookStoreCatalog.Master" AutoEventWireup="true" CodeBehind="AdminPage.aspx.cs" Inherits="BookStoreCatalog.AdminPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<%--<asp:Content ID="Content2" ContentPlaceHolderID="Login" runat="server">
-</asp:Content>--%>
 <asp:Content ID="Content3" ContentPlaceHolderID="Categories" runat="server">
     <asp:Button ID="wtf" runat="server" />
 </asp:Content>
@@ -110,36 +108,6 @@
         <HeaderStyle CssClass="searchforminput" />
     </asp:DetailsView>
     </fieldset>
-    <%--<asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="book_id" DataSourceID="SqlDataSource1">
-        <Columns>
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowInsertButton="True"/>
-            <asp:BoundField DataField="book_id" HeaderText="book_id" InsertVisible="False" ReadOnly="True" SortExpression="book_id" Visible="False" />
-            <asp:BoundField DataField="title" HeaderText="title" SortExpression="title" />
-            <asp:BoundField DataField="author_name" HeaderText="author_name" SortExpression="author_name" />
-            <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" />
-            <asp:BoundField DataField="b_prize" HeaderText="b_prize" SortExpression="b_prize" />
-            <asp:BoundField DataField="comment" HeaderText="comment" SortExpression="comment" ReadOnly="true"/>
-            <asp:BoundField DataField="fname" HeaderText="fname" SortExpression="fname" ReadOnly="true"/>
-            <asp:BoundField DataField="lname" HeaderText="lname" SortExpression="lname" ReadOnly="true"/>
-            <asp:TemplateField HeaderText="&#1050;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1080;&#1103;" SortExpression="c_fname">
-                <ItemTemplate>
-                    <asp:Label ID="TextBox1" runat="server" Text='<%# Bind("c_fname") %>'></asp:Label>
-                </ItemTemplate>
-                <EditItemTemplate>
-                    <asp:DropDownList 
-                        ID="CategoryName" 
-                        runat="server" 
-                        DataSourceID="SqlDataSource2"
-                        DataTextField="c_fname"
-                        DataValueField="c_fname"
-                        SelectedValue='<%# Bind("c_fname") %>'>
-                    </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BookstoreCatalog_1621448ConnectionString %>" SelectCommand="SELECT [c_fname] FROM [category]"></asp:SqlDataSource>
-                </EditItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>--%>
-
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookstoreCatalog_1621448ConnectionString %>" DeleteCommand="sp_delete_book" InsertCommand="sp_insert_bookdetails" SelectCommand="sp_select_book" UpdateCommand="sp_update_bookdetails" InsertCommandType="StoredProcedure" DeleteCommandType="StoredProcedure" UpdateCommandType="StoredProcedure" OnUpdating="SqlDataSource1_Updating1">
         <DeleteParameters>
             <asp:Parameter Name="book_id" />
