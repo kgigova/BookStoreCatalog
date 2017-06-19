@@ -77,15 +77,6 @@ namespace BookStoreCatalog
                     DatabaseHelper.AddParameter(delBooksCmd, "@user_id", SqlDbType.Int, m_userId);
                     DatabaseHelper.ExecuteQueryNoResult(delBooksCmd);
 
-                    //try
-                    //{                       
-                    //    //SqlDataReader dr = delBooksCmd.ExecuteReader();
-                    //    //int res = (Int32)delBooksCmd.Parameters["@s_id"].Value;
-                    //}
-                    //catch (Exception se)
-                    //{
-
-                    //}
                 }
             }
             DataList1.DataBind();
@@ -102,9 +93,10 @@ namespace BookStoreCatalog
                 DatabaseHelper.ExecuteQueryNoResult(orderBooksCmd);
 
                 DataList1.DataBind();
-                Label1.Text = "Вашата кошница е празна!";
+                btnOrder.Attributes["style"] = "display: none;";
+                btnDelete.Attributes["style"] = "display: none;";
                 Label2.Attributes["style"] = "display: none;";
-                lbSum.Attributes["style"] = "display: none;";
+                Label1.Text = "Вашата кошница е празна!";
         }
     }
 }
