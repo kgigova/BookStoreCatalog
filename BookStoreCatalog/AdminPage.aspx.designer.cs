@@ -13,15 +13,6 @@ namespace BookStoreCatalog {
     public partial class AdminPage {
         
         /// <summary>
-        /// wtf control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button wtf;
-        
-        /// <summary>
         /// RegistrationForm control.
         /// </summary>
         /// <remarks>

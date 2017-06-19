@@ -2,9 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="Categories" runat="server">
-    <asp:Button ID="wtf" runat="server" />
-</asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContent" runat="server">
     <fieldset class="searchform" id="RegistrationForm" runat="server">
         <asp:DetailsView ID="DetailsView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="book_id" DataSourceID="SqlDataSource1" AutoGenerateRows="False" CssClass="space" OnItemUpdating="DetailsView1_ItemUpdating" OnDataBound="DetailsView1_DataBound" OnItemInserting="DetailsView1_ItemInserting">

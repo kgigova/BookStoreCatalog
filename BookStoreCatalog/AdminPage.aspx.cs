@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace BookStoreCatalog
 {
@@ -21,36 +22,6 @@ namespace BookStoreCatalog
             if (Session["username"] == null || Session["role"] == null || !Session["role"].Equals("администратор"))
             {
                 Response.Redirect("Home.aspx");
-            }
-        }
-
-        protected void btnUpload_Click(object sender, EventArgs e)
-        {
-            FileUpload fileUpload = (FileUpload)DetailsView1.FindControl("FileUpload1");
-            Label lblMessageText = (Label)DetailsView1.FindControl("lblMessageText");
-            string[] fileBreak = fileUpload.FileName.Split(new char[] { '.' });
-
-            if (!fileUpload.HasFile)
-            {
-                lblMessageText.Text = "Не е избран файл.";
-            }
-            else if (fileBreak[1].ToUpper() != "JPG")
-            {
-                lblMessageText.Text = "Файлът трябва да e в JPG формат.";
-            }
-            else if (fileUpload.PostedFile.ContentLength > 1024 * 1024)
-            {
-                lblMessageText.Text = "Файлът трябва да e под 1 MB.";
-            }
-            else
-            {
-                String filePath = Server.MapPath("./BookPictures/") + Guid.NewGuid() + ".jpg";
-                fileUpload.SaveAs(filePath);
-                lblMessageText.Text = "<b>Файлът е добавен</b><br/>";
-                lblMessageText.Text += "Име: " + fileUpload.FileName + "<br/>";
-                lblMessageText.Text += "Размер: " + fileUpload.PostedFile.ContentLength + " bytes<br/>";
-                fileUpload.Attributes["style"] = "display: none;";
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('File Path: " + filePath + "')", true);
             }
         }
 
@@ -78,13 +49,16 @@ namespace BookStoreCatalog
                 else
                 {
                     String imageName = Guid.NewGuid() + ".jpg";
-                    String filePath = Server.MapPath("./BookPictures/") + imageName;
+                    String directory = Server.MapPath("./BookPictures/");
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+                    String filePath = directory + imageName;
                     fileUpload.SaveAs(filePath);
                     e.NewValues["imagePath"] = "BookPictures/" + imageName;
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('File path: " + filePath + "')", true);
                 }
             }
-
 
             DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
             e.NewValues.Add("c_fname", dropDownList.SelectedValue);
