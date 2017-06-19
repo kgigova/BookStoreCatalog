@@ -15,7 +15,6 @@ namespace BookStoreCatalog
 {
     public partial class AdminPage : System.Web.UI.Page
     {
-        private int m_userId = -1;
         protected void Page_Load(object sender, EventArgs e)
         {
             BookStoreCatalog.CurrentPage = "Администрация";
@@ -25,16 +24,6 @@ namespace BookStoreCatalog
             }
         }
 
-        protected void SqlDataSource1_Updating(object sender, SqlDataSourceCommandEventArgs e)
-        {
-            DbParameterCollection CmdParams = e.Command.Parameters;
-
-            foreach (DbParameter cp in CmdParams)
-                Trace.Warn(cp.ParameterName, cp.Value.ToString());
-
-            e.Cancel = true;
-        }
-
         protected void btnUpload_Click(object sender, EventArgs e)
         {
             FileUpload fileUpload = (FileUpload)DetailsView1.FindControl("FileUpload1");
@@ -42,16 +31,16 @@ namespace BookStoreCatalog
             string[] fileBreak = fileUpload.FileName.Split(new char[] { '.' });
 
             if (!fileUpload.HasFile)
-            { 
-                lblMessageText.Text = "Не е избран файл."; 
+            {
+                lblMessageText.Text = "Не е избран файл.";
             }
             else if (fileBreak[1].ToUpper() != "JPG")
-            { 
-                lblMessageText.Text = "Файлът трябва да e в JPG формат."; 
+            {
+                lblMessageText.Text = "Файлът трябва да e в JPG формат.";
             }
             else if (fileUpload.PostedFile.ContentLength > 1024 * 1024)
-            { 
-                lblMessageText.Text = "Файлът трябва да e под 1 MB."; 
+            {
+                lblMessageText.Text = "Файлът трябва да e под 1 MB.";
             }
             else
             {
@@ -64,14 +53,6 @@ namespace BookStoreCatalog
             }
         }
 
-        protected void SqlDataSource1_Updating1(object sender, SqlDataSourceCommandEventArgs e)
-        {
-            /*DbParameterCollection CmdParams = e.Command.Parameters;
-
-            foreach (DbParameter cp in CmdParams)
-                Trace.Warn(cp.ParameterName, cp.Value != null ? cp.Value.ToString() : "null");*/
-        }
-
         protected void DetailsView1_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
             FileUpload fileUpload = (FileUpload)DetailsView1.FindControl("FileUpload1");
@@ -81,28 +62,57 @@ namespace BookStoreCatalog
 
             string[] fileBreak = fileUpload.FileName.Split(new char[] { '.' });
 
-            if (!fileUpload.HasFile)
+            if (fileUpload.HasFile)
             {
-                lblMessageText.Text = "Не е избран файл.";
-                e.Cancel = true;
+                if (fileBreak[1].ToUpper() != "JPG")
+                {
+                    lblMessageText.Text = "Файлът трябва да e в JPG формат.";
+                    e.Cancel = true;
+                }
+                else if (fileUpload.PostedFile.ContentLength > 1024 * 1024)
+                {
+                    lblMessageText.Text = "Файлът трябва да e под 1 MB.";
+                    e.Cancel = true;
+                }
+                else
+                {
+                    String imageName = Guid.NewGuid() + ".jpg";
+                    String filePath = Server.MapPath("./BookPictures/") + imageName;
+                    fileUpload.SaveAs(filePath);
+                    e.NewValues["imagePath"] = "BookPictures/" + imageName;
+                }
             }
-            else if (fileBreak[1].ToUpper() != "JPG")
+
+            if (DetailsView1.CurrentMode == DetailsViewMode.Edit ||
+                DetailsView1.CurrentMode == DetailsViewMode.Insert)
             {
-                lblMessageText.Text = "Файлът трябва да e в JPG формат.";
-                e.Cancel = true;
+                DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
+                e.NewValues.Add("c_fname", dropDownList.SelectedValue);
             }
-            else if (fileUpload.PostedFile.ContentLength > 1024 * 1024)
+        }
+
+        protected void DetailsView1_DataBound(object sender, EventArgs e)
+        {
+            DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
+            if (dropDownList != null)
             {
-                lblMessageText.Text = "Файлът трябва да e под 1 MB.";
-                e.Cancel = true;
+                dropDownList.DataSource = SqlDataSource2;
+                dropDownList.DataTextField = "c_fname";
+                dropDownList.DataValueField = "c_fname";
+                dropDownList.DataBind();
+
+                if (DetailsView1.CurrentMode == DetailsViewMode.Edit)
+                {
+                    DataRowView rowView = (DataRowView)DetailsView1.DataItem;
+                    dropDownList.SelectedValue = (String)rowView.Row["c_fname"];
+                }
             }
-            else
-            {
-                String imageName = Guid.NewGuid() + ".jpg";
-                String filePath = Server.MapPath("./BookPictures/") + imageName;
-                fileUpload.SaveAs(filePath);
-                e.NewValues["imagePath"] = "BookPictures/" + imageName;
-            }
+        }
+
+        protected void DetailsView1_ItemInserting(object sender, DetailsViewInsertEventArgs e)
+        {
+            DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
+            e.Values.Add("c_fname", dropDownList.SelectedValue);
         }
     }
 }
