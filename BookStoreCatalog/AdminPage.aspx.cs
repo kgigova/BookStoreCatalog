@@ -89,6 +89,34 @@ namespace BookStoreCatalog
         {
             DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
             e.Values.Add("c_fname", dropDownList.SelectedValue);
+
+            FileUpload fileUpload = (FileUpload)DetailsView1.FindControl("FileUpload1");
+            Label lblMessageText = (Label)DetailsView1.FindControl("lblMessageText");
+            Image imgBookImage = (Image)DetailsView1.FindControl("imgBookImage");
+            Label label = (Label)DetailsView1.FindControl("lblImagePath");
+
+            string[] fileBreak = fileUpload.FileName.Split(new char[] { '.' });
+
+            if (fileUpload.HasFile)
+            {
+                if (fileBreak[1].ToUpper() != "JPG")
+                {
+                    lblMessageText.Text = "Файлът трябва да e в JPG формат.";
+                    e.Cancel = true;
+                }
+                else if (fileUpload.PostedFile.ContentLength > 1024 * 1024)
+                {
+                    lblMessageText.Text = "Файлът трябва да e под 1 MB.";
+                    e.Cancel = true;
+                }
+                else
+                {
+                    String imageName = Guid.NewGuid() + ".jpg";
+                    String filePath = Server.MapPath("./BookPictures/") + imageName;
+                    fileUpload.SaveAs(filePath);
+                    e.Values["imagePath"] = "BookPictures/" + imageName;
+                }
+            }
         }
     }
 }
