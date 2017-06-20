@@ -119,7 +119,7 @@ namespace BookStoreCatalog
                     }
                     String filePath = directory + imageName;
                     fileUpload.SaveAs(filePath);
-                    e.NewValues["imagePath"] = "BookPictures/" + imageName;
+                    e.Values["imagePath"] = "BookPictures/" + imageName;
                 }
             }
         }
