@@ -112,9 +112,14 @@ namespace BookStoreCatalog
                 else
                 {
                     String imageName = Guid.NewGuid() + ".jpg";
-                    String filePath = Server.MapPath("./BookPictures/") + imageName;
+                    String directory = Server.MapPath("./BookPictures/");
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+                    String filePath = directory + imageName;
                     fileUpload.SaveAs(filePath);
-                    e.Values["imagePath"] = "BookPictures/" + imageName;
+                    e.NewValues["imagePath"] = "BookPictures/" + imageName;
                 }
             }
         }
