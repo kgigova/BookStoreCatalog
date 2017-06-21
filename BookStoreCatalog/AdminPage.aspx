@@ -51,8 +51,7 @@
                         <asp:Label ID="lbPrizeValue" runat="server" CssClass="searchforminput" Style="font-size: 18pt;" Text='<%# string.Format("{0} лв.", Eval("b_prize")) %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtPrize" runat="server" CssClass="searchforminput" Width="300px" Height="15px" Text='<%# Bind("b_prize") %>'></asp:TextBox>
-                        <asp:Label ID="lbPrice" runat="server" Text="лв."></asp:Label>
+                        <asp:TextBox ID="txtPrize" runat="server" CssClass="searchforminput" Width="300px" Height="15px" Text='<%# string.Format("{0} лв.", Bind("b_prize") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
 
