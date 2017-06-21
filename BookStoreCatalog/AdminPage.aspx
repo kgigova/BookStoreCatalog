@@ -52,6 +52,7 @@
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:TextBox ID="txtPrize" runat="server" CssClass="searchforminput" Width="300px" Height="15px" Text='<%# Bind("b_prize") %>'></asp:TextBox>
+                        <asp:Label ID="lbPrice" runat="server" Text="лв."></asp:Label>
                     </EditItemTemplate>
                 </asp:TemplateField>
 
