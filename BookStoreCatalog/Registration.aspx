@@ -2,10 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<%--<asp:Content ID="Content2" ContentPlaceHolderID="Login" runat="server">
-</asp:Content>--%>
-<%--<asp:Content ID="Content3" ContentPlaceHolderID="Categories" runat="server">
-</asp:Content>--%>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContent" runat="server">
     <h3>Създай своя профил</h3>
     <fieldset class="searchform" id="RegistrationForm" runat="server">

@@ -1,10 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BookStoreCatalog.Master" AutoEventWireup="true" CodeBehind="Details.aspx.cs" Inherits="BookStoreCatalog.Details" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<%--<asp:Content ID="Content2" ContentPlaceHolderID="Login" runat="server">
-</asp:Content>--%>
-<%--<asp:Content ID="Content3" ContentPlaceHolderID="Categories" runat="server">
-</asp:Content>--%>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContent" runat="server">
     <asp:FormView ID="FormView1" runat="server" DataSourceID="SqlDataSource1" DataKeyNames="book_id" >
         <ItemTemplate>

@@ -1,10 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BookStoreCatalog.Master" AutoEventWireup="true" CodeBehind="MyBooks.aspx.cs" Inherits="BookStoreCatalog.MyBooks" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<%--<asp:Content ID="Content2" ContentPlaceHolderID="Login" runat="server">
-</asp:Content>--%>
-<%--<asp:Content ID="Content3" ContentPlaceHolderID="Categories" runat="server">
-</asp:Content>--%>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContent" runat="server">
     <asp:DataList ID="DataList1" runat="server" RepeatColumns="3" DataSourceID="SqlDataSource1" style="width:100%">
         <ItemStyle Width="30%" />
@@ -23,7 +19,6 @@
                 <div style="margin:5px">
                     <asp:Label ID="Label1" runat="server" Text='<%# string.Format("Закупена на {0}", Eval("orderdate")) %>' style="font-size:12pt"></asp:Label>
                 </div>
-                <%--<asp:Label ID="lblBookPrice" runat="server" Text='<%# string.Format("{0} лв.", Eval("b_prize")) %>' style="font-size:12pt;color:#D6593D;margin:5px"></asp:Label>--%>
             </div>
         </ItemTemplate>
     </asp:DataList>

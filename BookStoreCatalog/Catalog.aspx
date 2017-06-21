@@ -1,10 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BookStoreCatalog.Master" AutoEventWireup="true" CodeBehind="Catalog.aspx.cs" Inherits="BookStoreCatalog.Catalog" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<%--<asp:Content ID="Content2" ContentPlaceHolderID="Login" runat="server">
-</asp:Content>--%>
-<%--<asp:Content ID="Content3" ContentPlaceHolderID="Categories" runat="server">
-</asp:Content>--%>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContent" runat="server">
     <asp:DataList ID="DataList1" runat="server" RepeatColumns="3" DataSourceID="SqlDataSource1" style="width:100%">
         <ItemStyle Width="30%" />

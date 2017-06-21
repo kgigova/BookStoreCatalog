@@ -33,6 +33,8 @@ namespace BookStoreCatalog
             {
                 btnAdd.Attributes["style"] = "display: none;";
                 addToCartContainer.Attributes["style"] = "display: none;";
+                btnAddComment.Attributes["style"] = "display: none;";
+                txtComment.Attributes["style"] = "display: none;";
             }
         }
 

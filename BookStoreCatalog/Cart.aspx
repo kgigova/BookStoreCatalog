@@ -3,10 +3,6 @@
 <%@ Register Src="WebUserControl1.ascx" TagName="WebUserControl1" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<%--<asp:Content ID="Content2" ContentPlaceHolderID="Login" runat="server">
-</asp:Content>--%>
-<%--<asp:Content ID="Content3" ContentPlaceHolderID="Categories" runat="server">
-</asp:Content>--%>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel ID="Panel1" runat="server">
         <asp:Label ID="Label1" runat="server" Text="&#1042;&#1098;&#1074; &#1074;&#1072;&#1096;&#1072;&#1090;&#1072; &#1082;&#1086;&#1096;&#1085;&#1080;&#1094;&#1072; &#1080;&#1084;&#1072;:"></asp:Label>
@@ -29,20 +25,9 @@
                 <asp:Label ID="Label3" runat="server" Text='<%# string.Format("{0} лв.", Eval("b_prize")) %>' style="font-size:12pt;color:#D6593D;margin:5px"></asp:Label>
                 <div class="squaredFour">
                     <asp:CheckBox ID="CheckBox1" runat="server" Text="Премахване" CssClass="squaredFour"/>
-                    <%--<input type="checkbox" id="CheckBox1" runat="server" />--%>
 	                <label for="CheckBox1" ></label>
                 </div>
             </div>
-
-            <%--<asp:Label ID="lblBookID" runat="server" Text='<%# Eval("book_id") %>'></asp:Label>
-            <br />
-            &#1047;&#1072;&#1075;&#1083;&#1072;&#1074;&#1080;&#1077;:
-            <asp:Label ID="lblBookTitle" runat="server" Text='<%# Bind("title") %>'></asp:Label>
-            <br />
-            &#1062;&#1077;&#1085;&#1072;:
-            <asp:Label ID="lblBookPrice" runat="server" Text='<%# Bind("b_prize") %>' ></asp:Label>
-            <br />
-            <asp:CheckBox ID="CheckBox1" runat="server" Text="&#1054;&#1090;&#1073;&#1077;&#1083;&#1077;&#1078;&#1080; &#1079;&#1072; &#1087;&#1088;&#1077;&#1084;&#1072;&#1093;&#1074;&#1072;&#1085;&#1077;" />--%>
         </ItemTemplate>
     </asp:DataList>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookstoreCatalog_1621448ConnectionString %>" SelectCommand="sp_select_orders_for_user" SelectCommandType="StoredProcedure">
