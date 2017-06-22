@@ -92,7 +92,7 @@
                         <asp:Label ID="lblPDF" runat="server" CssClass="searchforminput" Style="font-size: 18pt; font-weight: bold;">PDF</asp:Label>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:LinkButton ID="linkPdf" runat="server" Text='<%# Bind("pdfPath") %>'></asp:LinkButton>
+                        <asp:HyperLink ID="linkPdf" runat="server" NavigateURL='<%# Bind("pdfPath") %>' Text='<%# Bind("pdfPath") %>'></asp:HyperLink>
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:FileUpload ID="FileUpload2" runat="server" />
