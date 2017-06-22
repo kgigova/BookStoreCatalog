@@ -127,7 +127,7 @@ a.button-slider {
 fieldset {
 	display:block;
 	border:none;
-	border-top:1px solid #e0e0e0;
+	/*border-top:1px solid #e0e0e0;*/
 }
 fieldset legend {
 	font-weight:bold;

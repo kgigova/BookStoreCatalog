@@ -17,24 +17,41 @@ namespace BookStoreCatalog
         private int m_userId = -1;
         private Button btnAdd;
         private HtmlContainerControl addToCartContainer;
+        private HtmlContainerControl pdfContainer;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             btnAdd = (Button)FormView1.FindControl("btnAdd");
-            addToCartContainer = (HtmlContainerControl) FormView1.FindControl("addToCartContainer");
+            addToCartContainer = (HtmlContainerControl)FormView1.FindControl("addToCartContainer");
+            pdfContainer = (HtmlContainerControl)FormView1.FindControl("pdfContainer");
 
             if (Session["username"] != null)
             {
                 btnAdd.Attributes["style"] = "display: ;";
                 addToCartContainer.Attributes["style"] = "display: ;";
                 m_userId = Convert.ToInt32(Session["userid"]);
+
+                SqlCommand hasBookCmd = new SqlCommand("sp_select_has_book");
+                hasBookCmd.CommandType = CommandType.StoredProcedure;
+                hasBookCmd.CommandText = "sp_select_has_book";
+
+                DatabaseHelper.AddParameter(hasBookCmd, "@user_id", SqlDbType.Int, m_userId);
+                DatabaseHelper.AddParameter(hasBookCmd, "@book_id", SqlDbType.Int, Int32.Parse(Request.QueryString["book_id"]));
+
+                DatabaseHelper.SqlResult result = DatabaseHelper.ExecuteQueryWithResult(hasBookCmd);
+                if (result.HasResults())
+                {
+                    btnAdd.Attributes["style"] = "display: none;";
+                }
+                else
+                {
+                    pdfContainer.Visible = false;
+                }
             }
             else
             {
                 btnAdd.Attributes["style"] = "display: none;";
-                addToCartContainer.Attributes["style"] = "display: none;";
-                btnAddComment.Attributes["style"] = "display: none;";
-                txtComment.Attributes["style"] = "display: none;";
+                pdfContainer.Visible = false;
             }
         }
 
@@ -47,20 +64,14 @@ namespace BookStoreCatalog
             DatabaseHelper.AddParameter(insertInCartCmd, "@user_id", SqlDbType.Int, m_userId);
             DatabaseHelper.AddParameter(insertInCartCmd, "@book_id", SqlDbType.Int, Int32.Parse(Request.QueryString["book_id"]));
 
-            
             try
             {
                 DatabaseHelper.SqlResult result = DatabaseHelper.ExecuteQueryWithResult(insertInCartCmd);
                 if (result.GetReader().RecordsAffected > 0)
                 {
-                    //DatabaseHelper.ExecuteQueryNoResult(insertInCartCmd);
                     Button btn = (Button)sender;
                     btn.Text = "Книгата беше добавена успешно! ";
                     btn.Enabled = false;
-                }
-                else
-                {
-                    throw new Exception("Книгата вече е била поръчана или вече я има в кошницата");
                 }
             }
             catch (Exception se)

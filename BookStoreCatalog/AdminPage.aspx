@@ -45,13 +45,13 @@
 
                 <asp:TemplateField HeaderText="&#1062;&#1077;&#1085;&#1072;" SortExpression="b_prize">
                     <HeaderTemplate>
-                        <asp:Label ID="lbPrize" runat="server" CssClass="searchforminput" Style="font-size: 18pt; font-weight: bold;">&#1062;&#1077;&#1085;&#1072;</asp:Label>
+                        <asp:Label ID="lbPrize" runat="server" CssClass="searchforminput" Style="font-size: 18pt; font-weight: bold;">&#1062;&#1077;&#1085;&#1072;(лв.)</asp:Label>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="lbPrizeValue" runat="server" CssClass="searchforminput" Style="font-size: 18pt;" Text='<%# string.Format("{0} лв.", Eval("b_prize")) %>'></asp:Label>
+                        <asp:Label ID="lbPrizeValue" runat="server" CssClass="searchforminput" Style="font-size: 18pt;" Text='<%# Bind("b_prize") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtPrize" runat="server" CssClass="searchforminput" Width="300px" Height="15px" Text='<%# Bind("b_prize") %>'></asp:TextBox><asp:Label ID="lbPrice" runat="server" Text="лв."></asp:Label>
+                        <asp:TextBox ID="txtPrize" runat="server" CssClass="searchforminput" Width="300px" Height="15px" Text='<%# Bind("b_prize") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
 
@@ -85,6 +85,20 @@
                         </p>
                         <asp:Label ID="lblImagePath" runat="server" Style="color: red" Text='<%# Bind("imagePath") %>'></asp:Label>
                         <asp:Image runat="server" ID="imgBookImage" Style="display: none" With="64" Height="128" />
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <HeaderTemplate>
+                        <asp:Label ID="lblPDF" runat="server" CssClass="searchforminput" Style="font-size: 18pt; font-weight: bold;">PDF</asp:Label>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:FileUpload ID="FileUpload2" runat="server" />
+                        <p>
+                            <asp:Label ID="lblPDFUploadMessageText" runat="server" Style="color: red"></asp:Label>
+                        </p>
+                        <asp:Label ID="lblPDTPath" runat="server" Style="color: red" Text='<%# Bind("pdfPath") %>'></asp:Label>
                     </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:CommandField

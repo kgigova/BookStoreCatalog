@@ -28,9 +28,11 @@ namespace BookStoreCatalog
         protected void DetailsView1_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
             FileUpload fileUpload = (FileUpload)DetailsView1.FindControl("FileUpload1");
+            FileUpload fileUpload2 = (FileUpload)DetailsView1.FindControl("FileUpload2");
             Label lblMessageText = (Label)DetailsView1.FindControl("lblMessageText");
             Image imgBookImage = (Image)DetailsView1.FindControl("imgBookImage");
             Label label = (Label)DetailsView1.FindControl("lblImagePath");
+            Label lblPDFUploadMessage = (Label)DetailsView1.FindControl("lblPDFUploadMessage");
 
             string[] fileBreak = fileUpload.FileName.Split(new char[] { '.' });
 
@@ -57,6 +59,33 @@ namespace BookStoreCatalog
                     String filePath = directory + imageName;
                     fileUpload.SaveAs(filePath);
                     e.NewValues["imagePath"] = "BookPictures/" + imageName;
+                }
+            }
+
+            fileBreak = fileUpload2.FileName.Split(new char[] { '.' });
+            if (fileUpload2.HasFile)
+            {
+                if (fileBreak[1].ToUpper() != "PDF")
+                {
+                    lblPDFUploadMessage.Text = "Файлът трябва да e в PDF формат.";
+                    e.Cancel = true;
+                }
+                else if (fileUpload2.PostedFile.ContentLength > 1024 * 1024 * 10)
+                {
+                    lblPDFUploadMessage.Text = "Файлът трябва да e под 10 MB.";
+                    e.Cancel = true;
+                }
+                else
+                {
+                    String pdfPath = Guid.NewGuid() + ".pdf";
+                    String directory = Server.MapPath("./pdfs/");
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+                    String filePath = directory + pdfPath;
+                    fileUpload2.SaveAs(filePath);
+                    e.NewValues["pdfPath"] = "pdfs/" + pdfPath;
                 }
             }
 
@@ -91,9 +120,11 @@ namespace BookStoreCatalog
             e.Values.Add("c_fname", dropDownList.SelectedValue);
 
             FileUpload fileUpload = (FileUpload)DetailsView1.FindControl("FileUpload1");
+            FileUpload fileUpload2 = (FileUpload)DetailsView1.FindControl("FileUpload2");
             Label lblMessageText = (Label)DetailsView1.FindControl("lblMessageText");
             Image imgBookImage = (Image)DetailsView1.FindControl("imgBookImage");
             Label label = (Label)DetailsView1.FindControl("lblImagePath");
+            Label lblPDFUploadMessage = (Label)DetailsView1.FindControl("lblPDFUploadMessage");
 
             string[] fileBreak = fileUpload.FileName.Split(new char[] { '.' });
 
@@ -120,6 +151,33 @@ namespace BookStoreCatalog
                     String filePath = directory + imageName;
                     fileUpload.SaveAs(filePath);
                     e.Values["imagePath"] = "BookPictures/" + imageName;
+                }
+            }
+
+            fileBreak = fileUpload2.FileName.Split(new char[] { '.' });
+            if (fileUpload2.HasFile)
+            {
+                if (fileBreak[1].ToUpper() != "PDF")
+                {
+                    lblPDFUploadMessage.Text = "Файлът трябва да e в PDF формат.";
+                    e.Cancel = true;
+                }
+                else if (fileUpload2.PostedFile.ContentLength > 1024 * 1024 * 10)
+                {
+                    lblPDFUploadMessage.Text = "Файлът трябва да e под 10 MB.";
+                    e.Cancel = true;
+                }
+                else
+                {
+                    String pdfPath = Guid.NewGuid() + ".pdf";
+                    String directory = Server.MapPath("./pdfs/");
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+                    String filePath = directory + pdfPath;
+                    fileUpload2.SaveAs(filePath);
+                    e.Values["pdfPath"] = "pdfs/" + pdfPath;
                 }
             }
         }
