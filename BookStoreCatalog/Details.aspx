@@ -22,7 +22,7 @@
                 <fieldset class="searchform" id="addToCartContainer" runat="server">
                     <asp:Button ID="btnAdd" runat="server" CssClass="formbutton" Text="&#1044;&#1086;&#1073;&#1072;&#1074;&#1080; &#1074; &#1082;&#1086;&#1096;&#1085;&#1080;&#1094;&#1072;&#1090;&#1072;" OnClick="btnAdd_Click" />
 
-                    <iframe id="pdfContainer" src='<%# string.Format("Resources/ViewerJS/#../{0}", Eval("pdfPath")) %>' width='800' height='480' allowfullscreen webkitallowfullscreen runat="server"></iframe>
+                    <iframe id="pdfContainer" src='<%# string.Format("Resources/ViewerJS/#../../{0}", Eval("pdfPath")) %>' width='800' height='480' allowfullscreen webkitallowfullscreen runat="server"></iframe>
                 </fieldset>
             </article>
         </ItemTemplate>
