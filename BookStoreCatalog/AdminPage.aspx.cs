@@ -4,9 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-
-
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -90,7 +87,7 @@ namespace BookStoreCatalog
             }
 
             DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
-            e.NewValues.Add("c_fname", dropDownList.SelectedValue);
+            e.NewValues.Add("c_name", dropDownList.SelectedValue);
         }
 
         protected void DetailsView1_DataBound(object sender, EventArgs e)
@@ -99,16 +96,16 @@ namespace BookStoreCatalog
             if (dropDownList != null)
             {
                 dropDownList.DataSource = SqlDataSource2;
-                dropDownList.DataTextField = "c_fname";
-                dropDownList.DataValueField = "c_fname";
+                dropDownList.DataTextField = "c_name";
+                dropDownList.DataValueField = "c_name";
                 dropDownList.DataBind();
 
                 if (DetailsView1.CurrentMode == DetailsViewMode.Edit)
                 {
                     DataRowView rowView = (DataRowView)DetailsView1.DataItem;
-                    if (rowView.Row["c_fname"] != null)
+                    if (rowView.Row["c_name"] != null)
                     {
-                        dropDownList.SelectedValue = (String)rowView.Row["c_fname"];
+                        dropDownList.SelectedValue = (String)rowView.Row["c_name"];
                     }
                 }
             }
@@ -117,7 +114,7 @@ namespace BookStoreCatalog
         protected void DetailsView1_ItemInserting(object sender, DetailsViewInsertEventArgs e)
         {
             DropDownList dropDownList = (DropDownList)DetailsView1.FindControl("CategoryName");
-            e.Values.Add("c_fname", dropDownList.SelectedValue);
+            e.Values.Add("c_name", dropDownList.SelectedValue);
 
             FileUpload fileUpload = (FileUpload)DetailsView1.FindControl("FileUpload1");
             FileUpload fileUpload2 = (FileUpload)DetailsView1.FindControl("FileUpload2");

@@ -14,19 +14,19 @@
                     <asp:Label ID="lblAuthor" runat="server" Text='<%# Bind("author_name") %>' ></asp:Label>
                 </div>
                 <div style="margin:5px">
-                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("c_fname") %>' style="color:#507DDC; font-weight:bold"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("c_name") %>' style="color:#507DDC; font-weight:bold"></asp:Label>
                 </div>
-                <asp:Label ID="lblBookPrice" runat="server" Text='<%# string.Format("{0} лв.", Eval("b_prize")) %>' style="font-size:12pt;color:#D6593D;margin:5px"></asp:Label>
+                <asp:Label ID="lblBookPrice" runat="server" Text='<%# string.Format("{0} лв.", Eval("b_price")) %>' style="font-size:12pt;color:#D6593D;margin:5px"></asp:Label>
             </div>
         </ItemTemplate>
     </asp:DataList>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookstoreCatalog_1621448ConnectionString %>" SelectCommand="if @c_fname = '-1'
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookstoreCatalog_1621448ConnectionString %>" SelectCommand="if @c_name = '-1'
 (select * from BookDetails);
 else
-(SELECT * FROM [BookDetails] WHERE ([c_fname] = @c_fname));">
+(SELECT * FROM [BookDetails] WHERE ([c_name] = @c_name));">
         <SelectParameters>
-            <asp:QueryStringParameter DefaultValue="-1" Name="c_fname" QueryStringField="Category" Type="String" />
+            <asp:QueryStringParameter DefaultValue="-1" Name="c_name" QueryStringField="Category" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
 </asp:Content>

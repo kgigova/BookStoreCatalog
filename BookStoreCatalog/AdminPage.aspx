@@ -43,24 +43,24 @@
                     </EditItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="&#1062;&#1077;&#1085;&#1072;" SortExpression="b_prize">
+                <asp:TemplateField HeaderText="&#1062;&#1077;&#1085;&#1072;" SortExpression="b_price">
                     <HeaderTemplate>
-                        <asp:Label ID="lbPrize" runat="server" CssClass="searchforminput" Style="font-size: 18pt; font-weight: bold;">&#1062;&#1077;&#1085;&#1072;(лв.)</asp:Label>
+                        <asp:Label ID="lbPrice" runat="server" CssClass="searchforminput" Style="font-size: 18pt; font-weight: bold;">&#1062;&#1077;&#1085;&#1072;(лв.)</asp:Label>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="lbPrizeValue" runat="server" CssClass="searchforminput" Style="font-size: 18pt;" Text='<%# Bind("b_prize") %>'></asp:Label>
+                        <asp:Label ID="lbPriceValue" runat="server" CssClass="searchforminput" Style="font-size: 18pt;" Text='<%# Bind("b_price") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtPrize" runat="server" CssClass="searchforminput" Width="300px" Height="15px" Text='<%# Bind("b_prize") %>'></asp:TextBox>
+                        <asp:TextBox ID="txtPrice" runat="server" CssClass="searchforminput" Width="300px" Height="15px" Text='<%# Bind("b_price") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="&#1050;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1080;&#1103;" SortExpression="c_fname">
+                <asp:TemplateField HeaderText="&#1050;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1080;&#1103;" SortExpression="c_name">
                     <HeaderTemplate>
                         <asp:Label ID="lbCategory" runat="server" CssClass="searchforminput" Style="font-size: 18pt; font-weight: bold;">&#1050;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1080;&#1103;</asp:Label>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="lbCategoryValue" runat="server" Text='<%# Bind("c_fname") %>' CssClass="searchforminput" Style="font-size: 18pt;"></asp:Label>
+                        <asp:Label ID="lbCategoryValue" runat="server" Text='<%# Bind("c_name") %>' CssClass="searchforminput" Style="font-size: 18pt;"></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:DropDownList
@@ -92,6 +92,7 @@
                         <asp:Label ID="lblPDF" runat="server" CssClass="searchforminput" Style="font-size: 18pt; font-weight: bold;">PDF</asp:Label>
                     </HeaderTemplate>
                     <ItemTemplate>
+                        <asp:LinkButton ID="linkPdf" runat="server" Text='<%# Bind("pdfPath") %>'></asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:FileUpload ID="FileUpload2" runat="server" />
@@ -120,20 +121,20 @@
             <asp:Parameter Name="book_id" />
         </DeleteParameters>
         <InsertParameters>
-            <asp:Parameter Name="c_fname" Type="String" />
+            <asp:Parameter Name="c_name" Type="String" />
             <asp:Parameter Name="book_id" Type="Int32" />
             <asp:Parameter Name="title" Type="String" />
             <asp:Parameter Name="author_name" Type="String" />
             <asp:Parameter Name="description" Type="String" />
-            <asp:Parameter Name="b_prize" Type="Decimal" />
+            <asp:Parameter Name="b_price" Type="Decimal" />
         </InsertParameters>
         <UpdateParameters>
-            <asp:Parameter Name="c_fname" Type="String" />
+            <asp:Parameter Name="c_name" Type="String" />
             <asp:Parameter Name="book_id" Type="Int32" />
             <asp:Parameter Name="title" Type="String" />
             <asp:Parameter Name="author_name" Type="String" />
             <asp:Parameter Name="description" Type="String" />
-            <asp:Parameter Name="b_prize" Type="Decimal" />
+            <asp:Parameter Name="b_price" Type="Decimal" />
             <asp:Parameter Name="imagePath" Type="String" />
         </UpdateParameters>
     </asp:SqlDataSource>

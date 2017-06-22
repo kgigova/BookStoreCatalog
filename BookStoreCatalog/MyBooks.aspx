@@ -14,7 +14,7 @@
                     <asp:Label ID="lblAuthor" runat="server" Text='<%# Bind("author_name") %>' ></asp:Label>
                 </div>
                 <div style="margin:5px">
-                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("c_fname") %>' style="color:#507DDC; font-weight:bold"></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("c_name") %>' style="color:#507DDC; font-weight:bold"></asp:Label>
                 </div>
                 <div style="margin:5px">
                     <asp:Label ID="Label1" runat="server" Text='<%# string.Format("Закупена на {0}", Eval("orderdate")) %>' style="font-size:12pt"></asp:Label>

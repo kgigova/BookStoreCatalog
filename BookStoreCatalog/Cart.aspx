@@ -20,9 +20,9 @@
                     <asp:Label ID="lblAuthor" runat="server" Text='<%# Bind("author_name") %>' ></asp:Label>
                 </div>
                 <div style="margin:5px">
-                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("c_fname") %>' style="color:#507DDC; font-weight:bold"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("c_name") %>' style="color:#507DDC; font-weight:bold"></asp:Label>
                 </div>
-                <asp:Label ID="Label3" runat="server" Text='<%# string.Format("{0} лв.", Eval("b_prize")) %>' style="font-size:12pt;color:#D6593D;margin:5px"></asp:Label>
+                <asp:Label ID="Label3" runat="server" Text='<%# string.Format("{0} лв.", Eval("b_price")) %>' style="font-size:12pt;color:#D6593D;margin:5px"></asp:Label>
                 <div class="squaredFour">
                     <asp:CheckBox ID="CheckBox1" runat="server" Text="Премахване" CssClass="squaredFour"/>
 	                <label for="CheckBox1" ></label>

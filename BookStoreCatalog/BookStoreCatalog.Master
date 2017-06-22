@@ -47,12 +47,6 @@
 
         <div class="intro">
             <div class="width" style="height: 300px">
-                <%--<h2>Tristique sem vitae metus ornare </h2>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque venenatis sagittis enim. Maecenas ligula erat, egestas congue, varius nec, sagittis nec, purus. In neque.</p>
-                <p style="text-align: center;">
-                    <a href="#" class="button button-slider">Lorem ipsum dolor</a>
-                    <a href="#" class="button button-reversed button-slider">Ligula erat vitae</a>
-                </p>--%>
             </div>
         </div>
 
@@ -97,13 +91,13 @@
                                 <Columns>
                                     <asp:TemplateField>
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Text='<%# Eval("c_fname")%>'>LinkButton</asp:LinkButton>
+                                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Text='<%# Eval("c_name")%>'>LinkButton</asp:LinkButton>
                                         </ItemTemplate>
                                         <ItemStyle Font-Size="X-Large" />
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookstoreCatalog_1621448ConnectionString %>" SelectCommand="SELECT DISTINCT [c_fname] FROM [category]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookstoreCatalog_1621448ConnectionString %>" SelectCommand="SELECT DISTINCT [c_name] FROM [category]"></asp:SqlDataSource>
                         </div>
                     </asp:ContentPlaceHolder>
                 </div>
