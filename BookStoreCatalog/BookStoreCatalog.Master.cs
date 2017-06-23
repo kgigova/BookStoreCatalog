@@ -43,7 +43,6 @@ namespace BookStoreCatalog
                 lbUserName.Attributes["style"] = "font-size: medium;";
                 lbPass.Attributes["style"] = "display: none;";
                 btnLogin.Attributes["style"] = "display: none;";
-                btnLogout.Attributes["style"] = "display: ;";
                 txtUserName.Attributes["style"] = "display: none;";
                 m_links["Начало"] = "Home.aspx";
                 m_links["Каталог"] = "Catalog.aspx";
@@ -57,7 +56,6 @@ namespace BookStoreCatalog
             }
             else
             {
-                btnLogin.Attributes["style"] = "display: ;";
                 btnLogout.Attributes["style"] = "display: none;";
                 m_links["Начало"] = "Home.aspx";
                 m_links["Каталог"] = "Catalog.aspx";

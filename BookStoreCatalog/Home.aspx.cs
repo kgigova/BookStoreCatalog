@@ -15,7 +15,6 @@ namespace BookStoreCatalog
             {
                 Label1.Text = "Здравейте, " + Session["username"].ToString() + "!";
                 Label2.Text = "Добре дошли в електронна книжарница: KG E-books!"; 
-                Label3.Text = "Датата и часът са: " + DateTime.Now + " Вашият браузър е: " + Request.Browser.Browser;
             }
             else
             {
