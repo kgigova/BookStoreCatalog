@@ -99,7 +99,7 @@ namespace BookStoreCatalog
                 user_name.Value = txtUserName.Text;
                 myCommand.Parameters.Add(user_name);
 
-                SqlParameter password = new SqlParameter("@password", SqlDbType.VarChar);
+                SqlParameter password = new SqlParameter("@password", SqlDbType.Text);
                 password.Value = txtPass.Text;
                 myCommand.Parameters.Add(password);
 
@@ -115,17 +115,17 @@ namespace BookStoreCatalog
                     {
                         m_loggedUserId = Convert.ToInt32(res);
 
-                        SqlCommand getEmailCmd = new SqlCommand("SELECT email FROM users WHERE user_id = @user_id");
-                        DatabaseHelper.AddParameter(getEmailCmd, "@user_id", SqlDbType.Int, m_loggedUserId);
-                        DatabaseHelper.SqlResult result = DatabaseHelper.ExecuteQueryWithResult(getEmailCmd);
+                        //SqlCommand getEmailCmd = new SqlCommand("SELECT email FROM users WHERE user_id = @user_id");
+                        //DatabaseHelper.AddParameter(getEmailCmd, "@user_id", SqlDbType.Int, m_loggedUserId);
+                        //DatabaseHelper.SqlResult result = DatabaseHelper.ExecuteQueryWithResult(getEmailCmd);
 
                         Session["username"] = txtUserName.Text;
-                        Session["email"] = result.GetNextRow()["email"];
-                        result.Close();
+                        //Session["email"] = result.GetNextRow()["email"];
+                        //result.Close();
 
                         SqlCommand getUserRole = new SqlCommand("SELECT role FROM login WHERE user_id = @user_id");
                         DatabaseHelper.AddParameter(getUserRole, "@user_id", SqlDbType.Int, m_loggedUserId);
-                        result = DatabaseHelper.ExecuteQueryWithResult(getUserRole);
+                        DatabaseHelper.SqlResult result = DatabaseHelper.ExecuteQueryWithResult(getUserRole);
                         Session["role"] = result.GetNextRow()["role"];
                         result.Close();
 

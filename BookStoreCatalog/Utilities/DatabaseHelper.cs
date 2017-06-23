@@ -111,14 +111,14 @@ namespace BookStoreCatalog.Utilities
             }
         }
 
-        static public void SendMail(string email, string title, string body)
-        {
-            MailProcessor mp = new MailProcessor();
+        //static public void SendMail(string email, string title, string body)
+        //{
+        //    MailProcessor mp = new MailProcessor();
 
-            mp.Message.To.Add(email);
-            mp.Message.Subject = title;
-            mp.Message.Body = body;
-            mp.SendMail();
-        }
+        //    mp.Message.To.Add(email);
+        //    mp.Message.Subject = title;
+        //    mp.Message.Body = body;
+        //    mp.SendMail();
+        //}
     }
 }
