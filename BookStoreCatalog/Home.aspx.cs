@@ -13,12 +13,14 @@ namespace BookStoreCatalog
         {
             if (Session["username"] != null)
             {
-                Label1.Text = "Здравейте, " + Session["username"].ToString() + "! Добре дошли в онлайн каталог за книги: KG E-books!  Датата и часът са: " + DateTime.Now + " Вашият браузър е: " + Request.Browser.Browser;
-
+                Label1.Text = "Здравейте, " + Session["username"].ToString() + "!";
+                Label2.Text = "Добре дошли в електронна книжарница: KG E-books!"; 
+                Label3.Text = "Датата и часът са: " + DateTime.Now + " Вашият браузър е: " + Request.Browser.Browser;
             }
             else
             {
-                Label1.Text = "Здравейте! Добре дошли в онлайн каталог за книги: KG E-books!";
+                Label1.Text = "Здравейте!";
+                Label2.Text = "Добре дошли в електронна книжарница: KG E-books!"; 
             }
 
             BookStoreCatalog.CurrentPage = "Начало";
