@@ -34,7 +34,6 @@ namespace BookStoreCatalog
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //btnLogout.Attributes["style"] = "display: none;";
 
             if (Session["username"] != null)
             {
@@ -58,6 +57,7 @@ namespace BookStoreCatalog
             }
             else
             {
+                btnLogin.Attributes["style"] = "display: ;";
                 btnLogout.Attributes["style"] = "display: none;";
                 m_links["Начало"] = "Home.aspx";
                 m_links["Каталог"] = "Catalog.aspx";
