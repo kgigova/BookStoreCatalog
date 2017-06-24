@@ -202,7 +202,6 @@
       <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\DatabaseHelper.cs" />
-    <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="WebUserControl1.ascx.cs">
       <DependentUpon>WebUserControl1.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
