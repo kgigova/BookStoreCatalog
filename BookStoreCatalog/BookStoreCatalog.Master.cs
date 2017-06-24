@@ -47,7 +47,7 @@ namespace BookStoreCatalog
                 m_links["Начало"] = "Home.aspx";
                 m_links["Каталог"] = "Catalog.aspx";
                 m_links["Моите книги"] = "MyBooks.aspx";
-                m_links["Количка"] = "Cart.aspx";
+                m_links["Кошница"] = "Cart.aspx";
 
                 if (Session["role"].Equals("администратор"))
                 {

@@ -16,7 +16,7 @@ namespace BookStoreCatalog
         private int m_userId = -1;
         protected void Page_Load(object sender, EventArgs e)
         {
-            BookStoreCatalog.CurrentPage = "Количка";
+            BookStoreCatalog.CurrentPage = "Кошница";
             if (Session["username"] != null)
             {
                 m_userId = Convert.ToInt32(Session["userid"]);
