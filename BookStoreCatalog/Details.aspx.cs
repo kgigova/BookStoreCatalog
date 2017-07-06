@@ -52,6 +52,8 @@ namespace BookStoreCatalog
             {
                 btnAdd.Attributes["style"] = "display: none;";
                 pdfContainer.Visible = false;
+                btnAddComment.Attributes["style"] = "display: none;";
+                txtComment.Attributes["style"] = "display: none;";
             }
         }
 
